@@ -1,4 +1,8 @@
 # Machine Learning Crash Course in R
+
+[Organize and Sponsor by Sparks of Africa](https://sparksofafrica.org/)
+
+***
 ***
 
 
