@@ -1,12 +1,22 @@
-# Machine Learning Crash Course in R
+*** 
+## Machine Learning Crash Course in R
 
-[Organize and Sponsor by Sparks of Africa](https://sparksofafrica.org/)
+
+[This free tutorial is Organize and Sponsor by Sparks of Africa as part of our Skill Development Programs](https://sparksofafrica.org/)
+
+![](https://sparksofafrica.org/static/website/assets/images/logo.png)
+Education is the first step towards empowerment. With this in mind, Sparks of Africa established a highly professional Skill Acquisition, Empowerment & Development (SAED) Centre in Ilorin, Nigeria. The SAED Center is a unique program that imparts high-tech innovation training in multiple disciplines. The center will also run entrepreneurship programs for youth where they will learn to exploit their ideas and skills for professional endeavors. The SAED Center has the enormous capacity to cater to 1000 talented graduates in various fields. The expected outcome of this attempt is development of highly skilled, technically sound and more educated youngsters in Nigeria.
+
+[visit our website for more information about Sparks of Africa](https://sparksofafrica.org)
+***
+
+
 
 ***
+ 
+**Below is the course outline we will cover for this course**
+
 ***
-
-
-**Course Outline**
 
 - Introduction to Machine Learning in R
    
