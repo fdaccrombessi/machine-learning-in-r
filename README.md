@@ -14,8 +14,7 @@ Education is the first step towards empowerment. With this in mind, Sparks of Af
 
 ***
  
-**Below is the course outline we will cover for this course**
-
+Outline
 ***
 
 - Introduction to Machine Learning in R
