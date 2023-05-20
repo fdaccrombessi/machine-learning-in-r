@@ -28,8 +28,8 @@ Education is the first step towards empowerment. With this in mind, Sparks of Af
     - [Story telling with data](./dataCleaningPrepProcessing/storyTellingWithData.R)
 
 - Supervised Learning Algorithms
-    - Linear Regression: Understanding linear regression and building models in R.
-    - Logistic Regression: Understanding logistic regression and building models in R.
+    - [Regression: Understanding linear regression and building models in R.](./regression/linearRegression.Rmd)
+    - Classification Understanding logistic regression and building models in R.
     - Decision Trees: Understanding decision trees and building models in R.
     - Random Forest: Understanding random forest and building models in R.
 
