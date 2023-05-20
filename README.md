@@ -24,8 +24,8 @@ Education is the first step towards empowerment. With this in mind, Sparks of Af
     - [What is machine learning? Understanding the fundamentals of machine learning and its importance in today's world.](./introduction2R/introduction2ML.Rmd)
 
 -  Data Preprocessing
-    - Data loading and cleaning: Reading in data from different sources and performing basic data cleaning.
-    - Data transformation: Data scaling, normalization, encoding and imputation.
+    - [Data loading and cleaning: Reading in data from different sources and performing basic data cleaning.](./dataCleaningPrepProcessing/DataCleaningExample.R)
+    - [Story telling with data](./dataCleaningPrepProcessing/storyTellingWithData.R)
 
 - Supervised Learning Algorithms
     - Linear Regression: Understanding linear regression and building models in R.
