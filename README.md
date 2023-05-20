@@ -29,14 +29,11 @@ Education is the first step towards empowerment. With this in mind, Sparks of Af
 
 - Supervised Learning Algorithms
     - [Regression: Understanding linear regression and building models in R.](./regression/linearRegression.Rmd)
-    - Classification Understanding logistic regression and building models in R.
-    - Decision Trees: Understanding decision trees and building models in R.
-    - Random Forest: Understanding random forest and building models in R.
+    - [Classification Understanding classification and building models in R.](./classification/classification_handwriting_recog.Rmd)
+
 
 - Unsupervised Learning Algorithms
-    - Principal Component Analysis (PCA): Understanding PCA and building models in R.
-    - k-Means Clustering: Understanding k-Means clustering and building models in R.
-    - Hierarchical Clustering: Understanding hierarchical clustering and building models in R.
+    - [Clustering](./clustering/fedpapers.R)
 
 -  Model Evaluation and Selection
     - Evaluation Metrics: Understanding accuracy, precision, recall, F1 score, ROC curves and AUC.
