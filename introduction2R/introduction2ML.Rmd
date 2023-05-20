@@ -1,0 +1,52 @@
+---
+title: "Introduction to ML"
+author: "Tajudeen Abdulazeez"
+date: "5/19/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+####  What is Machine Learning?
+
+The most common type of machine learning is to learn the mapping Y = f(X) to make predictions of Y for new X. This is called predictive modeling or predictive analytics and our goal is to make the most accurate predictions possible.
+
+
+#### Machine learning Landscape 
+- Supervised Learning
+  - Regression 
+    - Regression functions
+      - Credit loss
+      - forecast
+      - Algorithmic trading 
+  - Classification
+    - Learn classification functions 
+      - Rating prediction
+      - Credit card fraud 
+      - Anty money laundry 
+      
+- Unsupervised learning 
+  - Clustering    
+    - class function
+      - Customer segmentation
+      - Stock segmentation 
+  - Representation learning 
+    - learn representation function
+      - Factor modeling 
+      - De-noising
+      - Regime change detection 
+      
+- Reinforcement learning 
+  - Optimization of strategy from a task
+    - Learn policy function 
+      - Trading strategy
+      - Asset management
+  - Learn objective from behaviour
+    - Learn reward function 
+      - Reverse engineering of consumer behaviour 
+      - Trading strategy 
+    
+  
+  

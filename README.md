@@ -21,7 +21,7 @@ Education is the first step towards empowerment. With this in mind, Sparks of Af
 - Introduction to Machine Learning in R
    
     - [Introduction to R: Learning the basics of R programming language, its data structures and control flow.](./introduction2R/Introduction2R.Rmd)
-    - What is machine learning? Understanding the fundamentals of machine learning and its importance in today's world.
+    - [What is machine learning? Understanding the fundamentals of machine learning and its importance in today's world.](./introduction2R/introduction2ML.Rmd)
 
 -  Data Preprocessing
     - Data loading and cleaning: Reading in data from different sources and performing basic data cleaning.
