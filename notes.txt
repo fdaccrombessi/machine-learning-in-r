@@ -35,6 +35,8 @@ Education is the first step towards empowerment. With this in mind, Sparks of Af
 - Unsupervised Learning Algorithms
     - [Clustering](./clustering/fedpapers.R)
 
+- Model Evaluation 
+
     
 - Advanced Topics in Machine Learning in R
     - [Association Rule Mining](./associationRuleMining/associationRuleMining.R) 
@@ -46,7 +48,14 @@ Education is the first step towards empowerment. With this in mind, Sparks of Af
     - [Text Analytics: Understanding text analytics and building models in R.](./clustering/fedpapers.R)
     - Recommender Systems: Understanding recommender systems and building models in R.
 
+- Putting It All Together
+    - Building an end-to-end machine learning pipeline: From data preprocessing to model evaluation and selection.
+    - Real-world applications: Using case studies to demonstrate how machine learning can be used in practice.
+
+- Best Practices and Tips for Success
+    - Best practices for machine learning in R.
+    - Tips for success in building machine learning models.
 
 - Conclusion and Next Steps
     - Recap of key concepts and skills learned in the course.
-    - [Future directions and advanced topics in machine learning in R.](./resources/README.md)
+    - Future directions and advanced topics in machine learning in R.
