@@ -1,0 +1,339 @@
+---
+title: "Introduction to R Programming"
+author: "Tajudeen Abdulazeez"
+date: "5/19/2023"
+output: html_document
+link-citations: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction to R
+
+RStudio requires R 2.11.1 (or higher).
+Download and install R first
+Then download and install R studio
+
+We will be going through this step by step in the session.
+
+### GETTING R AND R STUDIO
+Links:
+
+- https://www.r-project.org/
+
+- https://www.rstudio.com/
+
+- https://www.rstudio.com/resources/webinars/getting-your-data-into-r/
+
+- https://www.rstudio.com/products/rstudio/download/
+
+
+### USING R
+
+USING KNOWN AND FREE DATASETS
+
+R offers many datasets that can be used to practice with.
+R dataset information and examples are located here:
+https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html
+R Studio installs with the R “datasets” Package. 
+To use it, type (or include in your code) the statement:
+library(datasets)
+
+```{r}
+library(datasets)
+
+head(cars)
+```
+
+```{r}
+head(iris)
+```
+
+
+#### PULLING DATA INTO YOUR R PROGRAM
+
+```{r}
+(x <- 1:10)  #This will set x as an array from 1 to 10 and will print it. 
+(y <- 21:30)
+
+plot(x,y, xlab="x label", ylab="HEIGHT")
+
+print("Hello")
+(x[3])
+print(x[0])
+
+(p <- rep(3,9))
+(length(p))
+
+(mean(p))
+
+```
+
+
+
+
+#### REP AND SEQ
+
+```{r}
+(q<-rep("TRUE",3))
+(y<-seq(from=1, to=9, by=2))
+(z<-seq(11,23,3))
+(x<-c(2.2, 3.0, 6.7))
+w<-c(3.1, 5.5, 8.7, 9.9)
+w[3]
+min(w)
+max(w)
+sort(w)
+(s1<-rep(w,times=2))
+(s2 <- rep(w,each=2))
+
+```
+
+
+#### CREATE A MATRIX: RBIND AND CBIND
+
+```{r}
+d1 <- c(0, 1, 3, 5, 9)
+d2<- c(3, 6, 0, 34, 67)
+(rbind(d1,d2))
+(cbind(d1,d2))
+
+```
+
+
+#### DATAFRAMES
+
+```{r}
+#dataframes
+#a list with elements of diff modes (types)
+(df <- list("apple", 7, TRUE, "fred", 5.5))
+
+(mode(df))
+
+#sapply - apply a particpular function to #each element
+(sapply(df,mode))
+
+```
+
+
+#### USING “C” (CONCAT) VERSUS “LIST”
+Creating an array using “c” will require that all items in the array are the SAME TYPE. 
+Lists do not have to be of the same type
+
+```{r}
+#c vs list
+(f <- c(5, 7, "dog", 9))
+
+# Because concat defaults it will make all #chars
+#list allows a collections of different modes
+#or types
+(g <- list(5, 7, "dog", 9))
+(sapply(f,mode))
+(sapply(g,mode))
+
+```
+
+
+#### EXAMPLE: MAKING A DATAFRAME
+
+```{r}
+(df1 <- data.frame(book=c("B1", "B2", "B3"), author=c("A1", "A2", "A3"), year=c(1950, 2005, 1999), used=c(TRUE, FALSE, TRUE)))
+
+
+(df1[1,2])
+#dataframes can be made column by column
+
+```
+
+#### DATAFRAME LARGER EXAMPLE: AARDVARKS
+
+```{r}
+aardvarkdata<-data.frame(individual=1:10, country=c(rep("Kenya",6), rep("Tanzania",4)), litter=c(2, 3, 4, 2, 3, 4, 2, 3, 1, 3))
+
+print(aardvarkdata)
+
+aardvarkdata$litter
+aardvarkdata$country
+aardvarkdata[,3]
+
+# All rows, columns 1 and 2
+aardvarkdata[,1:2]
+
+```
+
+
+#### ADD A NEW COLUMN (MEANWEIGHT) TO DATAFRAME
+
+```{r}
+aardvarkdata$meanWeight<-c(30, 29, 31, 32, 34, 32, 34, 45, 34, 23)
+print(aardvarkdata,row.names = FALSE)
+
+```
+
+
+#### PHYSICALLY IMPORTING DATA IN R STUDIO
+
+```{r}
+MyData <- read.csv(file="/Users/teejay/dev/courses/machine-learning-in-r/data/SalesData.csv")
+(head(MyData)) #prints the first 6 rows and the headers
+#Can also use read.table(read.csv(file="C:/Users/Ami/Desktop/nySMALL.csv", sep="\t", header=TRUE)
+#Can Also allow the User to Choose the file as the R code runs:
+#AirData <- read.table(file.choose(), sep="\t", header=TRUE)
+#It is also possible to directly read the HTML code from a website
+#sitedata <- read.scv("http://www.mathandstatistics.com")
+Store <- MyData$Store
+
+Mon <- MyData$Mon
+
+
+library(lattice)
+histogram(Mon)
+tail(MyData)
+nrow(MyData)
+ncol(MyData)
+
+```
+
+
+
+
+#### GETTING NEW PACKAGES
+
+- install.packages('package_name')
+
+
+#### USING R DATASETS: AIRQUALITY
+
+```{r}
+#Air Quality
+mydata<-airquality
+
+(head(mydata))
+
+(tail(mydata))
+
+```
+
+
+#### WRITING TO A DATAFILE FROM R
+
+```{r}
+MyData <- read.csv(file="/Users/teejay/dev/courses/machine-learning-in-r/data/SalesData.csv")
+(head(MyData))
+
+Region <- MyData$Region
+write.csv(Region, file="/Users/teejay/dev/courses/machine-learning-in-r/data/NewRFile.txt")
+
+```
+
+
+#### LOOKING AT DATA
+
+-  Looking at raw data: head, tail, class, levels, and view
+
+-  What type of data object is the data stored in: vector/matrix, dataframe, list, etc.
+
+-  What are properties of the data: nrow(), ncol(), length(), names(), str(), dplyr::glimpse()
+
+-  Visualize (basic) the data: plot(), identity()
+
+-  Summarize the data: xtab()
+
+
+#### LOOKING AT THE DATA
+
+```{r}
+
+#Must first install.packages("dplyr") on console
+library(dplyr)
+
+AirData <- airquality
+(head(AirData))
+(tail(AirData))
+(class(AirData))
+(length(AirData))  # number of columns
+(ncol(AirData))  # same as length
+(names(AirData))  #col names
+
+
+(nrow(AirData))
+((AirData[10,4]))  #[rows,columns]
+#(View(AirData))  #"V" must be uppercase
+
+#if larger than 1000 rows, view will only #write first 1000
+(str(AirData))   #summarize the data
+(levels(AirData))  #
+#(glimpse(AirData))
+
+
+```
+
+
+#### STARTING TO CLEAN UP THE DATA
+```{r}
+#Change Month to variable to a factor (not an int)
+AirData$Month <- factor(AirData$Month)
+
+(levels(AirData$Month))
+#Change the names of the levels
+levels(AirData$Month)<- list(May="5", June="6", July="7", Aug="8", Sept="9")
+(levels(AirData$Month))
+#(glimpse(AirData))
+
+```
+
+
+#### VISUALIZING
+
+```{r}
+plot(AirData$Ozone,AirData$Temp)
+
+```
+
+
+#### USING IDENTIFY
+```{r}
+plot(AirData$Ozone,AirData$Temp)
+## identify makes the plot interactive - as you #click
+# points are saved. Must press "finish" at the #top of the plot
+# identify will then label the dta points clicked.
+idx<-identify(AirData$Ozone, AirData$Temp)
+
+```
+
+
+#### IDENTIFY WITH IMPROVED LABELS
+```{r}
+## Get the Day for each datapoint
+# Here, first paste together the char #version of the day with _ and the char
+#version of the month. Use this to label #all points clicked. 
+plot(AirData$Ozone,AirData$Temp)
+idx<- identify(AirData$Temp, labels = paste(as.character(AirData$Day),"-",as.character(AirData$Month)), plot=TRUE)
+
+
+```
+
+
+#### XTAB
+```{r}
+## xtabs is a function that will investigate
+#Is there an even distribution of data labels
+## It is a formula/function so we use the ~
+## It will COUNT the number of investigates for each label in dataset
+xtabs(~Month, data=AirData)
+
+```
+
+
+
+#### References 
+
+ R Refresher  by Dr. Ami Gates
+Associate Professor, Georgetown University
+drgates@georgetown.edu
+
+
+

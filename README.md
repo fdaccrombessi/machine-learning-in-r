@@ -9,8 +9,9 @@
 **Course Outline**
 
 - Introduction to Machine Learning in R
+   
+    - [Introduction to R: Learning the basics of R programming language, its data structures and control flow.](./introduction2R/Introduction2R.Rmd)
     - What is machine learning? Understanding the fundamentals of machine learning and its importance in today's world.
-    - Introduction to R: Learning the basics of R programming language, its data structures and control flow.
 
 -  Data Preprocessing
     - Data loading and cleaning: Reading in data from different sources and performing basic data cleaning.
