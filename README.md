@@ -2,10 +2,10 @@
 ## Machine Learning Crash Course in R
 
 
-[This free tutorial is Organize and Sponsor by Sparks of Africa as part of our Skill Development Programs](https://sparksofafrica.org/)
+[Code Repository for the Crash Course on Machine Learning Using R. Organized by Spacks of Africa](https://sparksofafrica.org/)
 
-![](https://sparksofafrica.org/static/website/assets/images/logo.png)
-Education is the first step towards empowerment. With this in mind, Sparks of Africa established a highly professional Skill Acquisition, Empowerment & Development (SAED) Centre in Ilorin, Nigeria. The SAED Center is a unique program that imparts high-tech innovation training in multiple disciplines. The center will also run entrepreneurship programs for youth where they will learn to exploit their ideas and skills for professional endeavors. The SAED Center has the enormous capacity to cater to 1000 talented graduates in various fields. The expected outcome of this attempt is development of highly skilled, technically sound and more educated youngsters in Nigeria.
+![](https://sparksofafrica.org/static/website/assets/images/logo-2.png)
+Sparks of Africa is an independent non-profit organization incessantly working to improve and positively influence the socio-economic wellbeing of the Nigerian people. The organization is focused on socio economic uplift of the nation through efforts to engender empowering of the youth of Nigeria
 
 [visit our website for more information about Sparks of Africa](https://sparksofafrica.org)
 ***
