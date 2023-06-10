@@ -1,0 +1,184 @@
+---
+title: "Portfolio Optimization"
+#author: "Tajudeen Abdulazeez"
+date: "5/26/2023"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    #source_code: embed
+    theme: "spacelab"
+runtime: shiny
+---
+
+```{r packages, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+
+```
+
+
+
+```{r data-source, include=FALSE}
+
+
+```
+
+
+
+```{r data-prep, include=FALSE}
+
+```
+
+
+
+
+Background
+=======================================================================
+## {.sidebar}
+
+###
+<html>
+    <body>
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+    
+    <div class="LI-profile-badge"  data-version="v1" data-size="small" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="tajudeenolarewajuabdulazeez"><a class="LI-simple-link" href='https://www.linkedin.com/in/tajudeenolarewajuabdulazeez?trk=profile-badge'>Tajudeen Abdulazeez</a></div>
+    </body>
+</html>
+
+
+###
+<html>
+<body>
+    <h5>Links</h5>
+    <p><a href="https://www.toraaglobal.com" target="_blank">My Website</a></p>
+    <p><a href="https://github.com/toraaglobal"   target="_blank">My GitHub</a></p>
+    <p><a href="http://rpubs.com/toraaglobal" target="_blank">Rpubs</a></p>
+</body>
+</html>
+
+
+Column
+-----------------------------------------------------------------------
+
+### Problem 
+A small startup company with an initail allocation of \$50,000 to be invested in metals. The company want us as the data scientist to:
+
+1. Retrieve an analyze the data about the potential commodity to diversify into
+2. Compare potential commodities with the existing commodities in convensional metal spot market
+3. Generate economic scenerio base on diferent events that may or may not affect the commodities.
+4. The company want to mitigate risk and diversified 
+5. Effect of Russina Ukrain war on the convensional metal spot market
+
+
+
+### Data and analysis to inform the decision
+
+
+- Spot market prices of platinum, gold,  copper,silver, iron ore, and aluminium
+- Correlation, sensitivity, volaitlities  between commodities 
+
+
+### Method
+
+Identify the optimal combination of the commodities to trade.
+Effect of the Russian Ukrain war of the commodities market  ( the invation started on Thu, Feb 24, 2022 ).
+How did the commodity market react to the invasion.
+
+
+
+##
+### Stylized facts of the Metals market
+
+The metal market is characterized by diverse metal types, including precious, base, and industrial metals, which are in demand across industries such as construction, automotive, and electronics. Metal prices are subject to volatility influenced by factors such as global economic conditions, supply and demand imbalances, and geopolitical events, while advancements in technology and government regulations also play significant roles in shaping the market.
+
+- Volatility is rarely constant and often has a structure (mean reversion) and is dependent on the past.
+- Past shocks persist and may or may not dampen (rock in a pool).
+- Extreme events are likely to happen with other extreme events.
+- Negative returns are more likely than positive returns (left skew).
+
+
+
+
+### Business questions
+
+- What are the best trading strategy to minimize risk and maximize profit?
+- How will the strategy react to events like Russia/ Ukrain war?
+
+### History speaks
+
+- We will develop the *value at risk* and *expected shortfall* metrics from the historical simulated distributions of risk factors.
+- Given these factors we will combine them into a portfolio and calculate their losses. 
+- With the loss distribution in hand we can compute the risk measures. - This approach is nonparametric.
+
+- We can then posit high quantile thresholds and explore risk measures the in the tails of the distributions.
+
+First we set the tolerance level $\Large\alpha$, for example, equal to 95\%. This would mean that a decision maker would not tolerate loss in  more than $\Large 1-\alpha$, or 5\%. of all risk scenarios under consideration.
+
+We define the VaR as the quantile for probability $\Large\alpha \in (0,1)$, as
+
+$$
+\Large
+VaR_{\alpha} (X) = inf \{ x \in R: F(x) \geq \alpha \},
+$$
+
+which means find the greatest lower bound of loss $\Large x$ (what the symbol $\Large inf$ = _infimum_ means in English), such that the cumulative probability of $\Large x$ is greater than or equal to $\Large \alpha$. 
+
+Using the $\Large VaR_{\alpha}$ definition we can also define $\Large ES$ as
+
+$$
+\Large
+ES_{\alpha} = E [X \lvert X \geq VaR_{\alpha}],
+$$
+
+where $\Large ES$ is "expected shortfall" and $\Large E$ is the expectation operator, also known as the "mean." Again, in English, the expected shortfall is the average of all losses greater than the loss at a $\Large VaR$ associated with probability $\Large \alpha$, and $\Large ES \geq VaR$.
+
+
+
+
+
+
+
+Data
+=======================================================================
+
+
+
+
+
+Exploratory Analysis
+=======================================================================
+
+
+
+Optimization
+==========================================================
+
+
+
+
+
+
+
+
+
+
+Market Risk
+=======================================================================
+
+
+
+
+
+Extremes
+=======================================================================
+
+
+
+
+
+
+
+
+
+
+

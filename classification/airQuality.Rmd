@@ -1,0 +1,228 @@
+---
+title: "airQuality"
+output: 
+    flexdashboard::flex_dashboard:
+        orientation: columns
+        vertical_layout: fill
+        self_contained: true
+        social : ["twitter","facebook","menu"]
+        source_code : embed
+---
+
+```{r load-library}
+library(psych)
+library(ggplot2)
+library(tidyr)
+library(cowplot)
+library(reshape2)
+
+```
+
+
+```{r load-dataset}
+
+airdata <- datasets::airquality
+#remove NA's and add data data is collected
+remove_na <- function(df, n=0){
+  #data data collected from May 1, 1973 to Sep 30, 1973
+  df_date <- seq.Date(as.Date('1973/05/01'), as.Date('1973/09/30'), by='day')
+  df['date'] <- df_date
+  df <- df[rowSums(is.na(df)) <= n,]
+  return (df)
+}
+
+airdata <- remove_na(airdata)
+
+```
+
+# Data Description
+## Side Bar {.sidebar data-width=150}
+
+## Data Description
+###
+
+#### New York Air Quality Measurements
+##### Description
+
+Daily air quality measurements in New York, May to September 1973.
+
+- Usage
+
+airquality
+Format
+
+A data frame with 154 observations on 6 variables.
+
+1. 	Ozone	 numeric	 Ozone (ppb)
+1.	Solar.R	 numeric	 Solar R (lang)
+1. 	Wind	 numeric	 Wind (mph)
+1. Temp	 numeric	 Temperature (degrees F)
+1. Month	 numeric	 Month (1--12)
+1. 	Day	 numeric	 Day of month (1--31)
+
+- Details
+
+Daily readings of the following air quality values for May 1, 1973 (a Tuesday) to September 30, 1973.
+
+Ozone: Mean ozone in parts per billion from 1300 to 1500 hours at Roosevelt Island
+
+Solar.R: Solar radiation in Langleys in the frequency band 4000–7700 Angstroms from 0800 to 1200 hours at Central Park
+
+Wind: Average wind speed in miles per hour at 0700 and 1000 hours at LaGuardia Airport
+
+Temp: Maximum daily temperature in degrees Fahrenheit at La Guardia Airport.
+
+- Source
+
+The data were obtained from the New York State Department of Conservation (ozone data) and the National Weather Service (meteorological data).
+
+- References
+
+Chambers, J. M., Cleveland, W. S., Kleiner, B. and Tukey, P. A. (1983) Graphical Methods for Data Analysis. Belmont, CA: Wadsworth.
+
+- Examples
+``
+require(graphics)
+pairs(airquality, panel = panel.smooth, main = "airquality data")
+``
+
+# Load Data
+## display-table
+### AirQuality Data : The table below shows the clean airquality datasets ready for analysis.
+```{r}
+DT::datatable(airdata)
+```
+
+### Data Structure : Schema of the dataframe
+```{r}
+str(airdata)
+```
+
+## Data-summary
+### Summary : Statistical summary of the airquality dataset
+```{r}
+summary(airdata)
+```
+
+### Pair plots: Showing the correlation of the variables in the air quality dataset
+```{r}
+pairs.panels(airdata, gap=0)
+```
+
+# Data Distribution
+## histogram
+### Histograms
+```{r histogram}
+#ggplot(gather(airdata[,c(1,2,3,4)]), aes(value)) + geom_histogram(bins = 20,color='blue') + facet_wrap(~key, scales = 'free_x') + theme_classic()
+
+g <- ggplot(airdata, aes(x=Ozone)) + geom_histogram(binwidth = 10,color='black', fill='white') +theme_classic()
+h <- ggplot(airdata, aes(x=Solar.R)) + geom_histogram(binwidth  = 10,color='black', fill='white') + theme_classic()
+i <- ggplot(airdata, aes(x=Wind)) + geom_histogram(binwidth = 10,color='black', fill='white') + theme_classic()
+j <- ggplot(airdata, aes(x=Temp)) + geom_histogram(binwidth =  10,color='black', fill='white') + theme_classic()
+
+plot_grid(g,h,i,j, nrow = 2, ncol = 2, labels = "AUTO")
+```
+
+
+## boxplots
+### Ozone
+```{r ozone}
+ggplot(airdata, aes(group=Month,x=Month,Ozone)) + geom_boxplot() + theme_classic()
+```
+
+
+### Wind
+```{r wind}
+ggplot(airdata, aes(group=Month,x=Month,round(Wind))) + geom_boxplot() + theme_classic()
+```
+
+
+# Data Trend
+## line-plots
+### Line Plots
+
+```{r scale-features}
+airdata$Ozone <- pnorm(airdata$Ozone, mean = mean(airdata$Ozone), sd = sd(airdata$Ozone))
+airdata$Solar.R <- pnorm(airdata$Solar.R, mean = mean(airdata$Solar.R), sd = sd(airdata$Solar.R))
+airdata$Wind <- pnorm(airdata$Wind, mean = mean(airdata$Wind), sd = sd(airdata$Wind))
+airdata$Temp <- pnorm(airdata$Temp, mean = mean(airdata$Temp), sd = sd(airdata$Temp))
+
+```
+
+
+```{r line-plots}
+
+g <- ggplot(airdata, aes(x=date,group=Month))  + geom_line(aes(y=Ozone)) + theme_classic() + geom_point(aes(y=Ozone))
+h <- ggplot(airdata, aes(x=date,group=Month))  + geom_line(aes(y=Wind)) + theme_classic() + geom_point(aes(y=Wind))
+i <- ggplot(airdata, aes(x=date,group=Month))  + geom_line(aes(y=Solar.R)) + theme_classic() + geom_point(aes(y=Solar.R))
+j <- ggplot(airdata, aes(x=date,group=Month))  + geom_line(aes(y=Temp)) + theme_classic() + geom_point(aes(y=Temp))
+
+plot_grid(g,h,i,j, nrow = 2, ncol = 2, labels = 'AUTO')
+
+
+```
+
+###
+
+```{r}
+
+g <- ggplot(airdata, aes(x=date,group=Month))  + geom_line(aes(y=Ozone,color='Ozone'))  + theme(title = element_text('Ozone'))
+g <- g + geom_line(aes(y=Wind,color='Wind'))  + theme(title = element_text('Wind'))
+g <- g + geom_line(aes(y=Solar.R, color='Solar'))  + theme(title = element_text('Solar'))
+g <- g + geom_line(aes(y=Temp, color='Temp')) + theme(title = element_text('Temp'))
+g <- g + ylab('Values') + theme_classic()
+g
+
+```
+
+
+
+## heatmap
+### Heatmap
+```{r}
+
+
+#ggplot(airdata, aes(x= date, y =Wind)) + geom_tile(aes(fill = Wind)) + scale_fill_gradient(low = "#132B43", high = "#56B1F7")
+
+
+temp <- melt(airdata, id=c("Month","Day","date"))
+
+#temp$scale_value <- pnorm(temp$value,mean = mean(temp$value), sd = sd(temp$value))
+
+ggplot(temp, aes(x=Day, y=variable, fill= value)) + geom_tile() + facet_grid(Month ~ ., labeller = label_both )  +scale_color_gradient() + ggtitle('Daily air quality measurements in NY, May to Sep 1973') + scale_fill_gradientn(colours = rainbow(4), name = "Intensity")  + theme_linedraw()
+  
+
+#  + geom_text(aes(label= round(value,1)))
+# scale_fill_gradientn(colours = rainbow(4), name = "Intensity") , + scale_fill_gradient(low='white', high='red')
+
+```
+
+
+### Scatter Plot
+```{r}
+g <-ggplot(airdata, aes(x=Wind,y=Temp)) + geom_point(aes(y=Ozone,color=Solar.R,size=Ozone)) + ggtitle('Daily air quality measurements in NY, May to Sep 1973')
+g
+```
+
+# Final Analysis
+##
+### Analysis Report
+
+- As  the temperature increases the wind decreases.it is negatively corelated with 95% confidence interval of value between -0.6256 and -0.3454.
+```{r}
+cor.test(airdata$Temp, airdata$Wind)
+```
+
+- As the temperature increases the Solar Radiation aslo increases. This has a week positive corelation.
+```{r}
+cor.test(airdata$Temp, airdata$Solar.R)
+```
+
+- The Ozone depletion is positively correlated with the Temperature.
+```{r}
+cor.test(airdata$Ozone, airdata$Temp)
+```
+
+##
+###
+

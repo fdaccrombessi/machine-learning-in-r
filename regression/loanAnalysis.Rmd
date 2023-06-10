@@ -1,0 +1,553 @@
+---
+title: "Loan Analysis"
+output: 
+    flexdashboard::flex_dashboard:
+        orientation: columns
+        vertical_layout: fill
+        self_contained: true
+        social : ["twitter","facebook","menu"]
+        source_code : embed
+---
+
+```{r load-packages}
+library(neuralnet)
+library(rbokeh)
+library(psych)
+
+```
+
+
+```{r load-dataset}
+
+loandata <- read.csv("C:\\Users\\teeja\\Desktop\\CleanGithubProjects\\scm651\\hw4_gb3\\scm651_homework_4_universal_bank.csv", na.strings =c(""))
+#head(loandata)
+
+```
+
+
+
+# Data Decription
+## {.tabset}
+### Columns Descrption
+
+#### Background
+Using the Universal Bank data, determine the factors which influence whether a customer
+takes out a loan
+
+#### Universal Bank Data Fields
+1. ID : unique identifier
+1. Personal Loan :  did the customer accept the personal load offered (1=Yes, 0=No)
+1. Age : customer’s age
+1. Experience :  number of years of profession experience
+1. Income : annual income of the customer ($000)
+1. Zip code:  home address zip code
+1. Family : family size of customer
+1. CCAvg : average spending on credit cards per month ($000)
+1. Education:  education level (1) undergraduate, (2) graduate, (3) advanced/professional
+1. Mortgage :  value of house mortgage ($000)
+1. Securities :  does the customer have a securities account with the bank? (1=Yes, 0=No)
+1. CDAccount : does the customer have a certificate of deposit with the bank? (1=Yes, 0=No)
+1. Online : does the customer use Internet banking facilities (1=Yes, 0=No)
+1. CreditCard : does the customer use a credit card issued by Universal Bank? (1=Yes, 0=No)
+
+### Summary
+```{r summary-data}
+summary(loandata)
+```
+
+### Data Structure
+```{r}
+str(loandata)
+```
+
+
+
+
+```{r}
+### Data Transformation
+#loandata$CustomerID < as.factor(loandata$CustomerID)
+originaldata <- loandata
+
+# # tranform loan data
+# loandata$PersonalLoan <- as.factor(loandata$PersonalLoan)
+# loandata$Income <- as.numeric(loandata$Income)
+# loandata$ZIP.Code <- as.factor(loandata$ZIP.Code)
+# loandata$Education <- as.ordered(loandata$Education)
+# loandata$Mortgage <- as.numeric(loandata$Mortgage)
+# loandata$SecuritiesAccount <- as.factor(loandata$SecuritiesAccount)
+# loandata$CDAccount <- as.factor(loandata$CDAccount)
+# loandata$Online <- as.factor(loandata$Online)
+# loandata$CreditCard <- as.factor(loandata$CreditCard)
+# 
+# str(loandata)
+
+```
+
+### Scatter Plot
+
+```{r}
+p = loandata  %>% figure(title = "Scatter Plot", width = 1000) %>% ly_points(x=Experience, y=Income, size = CCAvg, color = PersonalLoan,
+                                                               hover = list(ZIP.Code, CDAccount,Online, PersonalLoan) )
+p
+
+```
+
+
+### Scater Matrix
+```{r}
+pairs.panels(loandata[,-c(1,6)])
+
+```
+
+
+
+### Age and Experience
+
+```{r}
+p =loandata[,c(3,4)] %>% figure(title = "Age and Experience") %>%
+      ly_points(Age,Experience, hover = list(Age, Experience)) 
+
+p
+
+```
+
+
+
+
+
+# Logit
+
+## {.tabset}
+
+### Model 1
+
+
+```{r split-data}
+
+ind <- sample(2, nrow(loandata), replace = TRUE, prob = c(0.7, 0.3))
+train <- loandata[ind==1,]
+test <- loandata[ind==2,]
+
+# remove customer ID
+
+train <- train[,-1]
+test <- test[,-1]
+
+# str(train)
+#str(test)
+#dim(train)
+#dim(test)
+
+```
+
+
+
+
+```{r}
+
+#remove zip code
+
+model1 <- glm(PersonalLoan ~ .,family = binomial("logit"), data= train[,-5])
+
+summary(model1)
+
+
+
+```
+
+### Model 2
+```{r}
+
+#remove zip code
+
+model2 <- glm(PersonalLoan ~ .,family = binomial("logit"), data= train[, -c(2,5)])
+
+summary(model2)
+
+```
+
+
+### Model 3
+
+```{r}
+#remove zip code, Age, Experience
+
+model3 <- glm(PersonalLoan ~ .,family = binomial("logit"), data= train[,-c(2,3,5,9)])
+
+summary(model3)
+
+```
+
+
+### ANOVA
+
+```{r}
+anova(model3, test="Chisq")
+```
+
+
+### Model Accuracy
+
+```{r}
+
+prediction <- predict.glm(model3, newdata = test[,-c(1,2,3,5,9)])
+
+prediction <- ifelse(prediction > 0.5, 1, 0)
+
+error <- mean(prediction != test$PersonalLoan)
+
+
+prediction2 <- predict.glm(model2, newdata = test[,-c(1,2,5)])
+
+prediction2 <- ifelse(prediction2 > 0.5, 1, 0)
+
+error2 <- mean(prediction2 != test$PersonalLoan)
+
+
+prediction1 <- predict.glm(model1, newdata = test[,-c(1,5)])
+
+prediction1 <- ifelse(prediction1 > 0.5, 1, 0)
+
+error1 <- mean(prediction1 != test$PersonalLoan)
+
+
+cat("Model 1 Accuracy : ", 1-error1, '\n\n')
+cat("Model 2 Accuracy : ", 1-error2, '\n\n')
+cat("Model 3 Accuracy : ", 1-error, '\n')
+ 
+```
+
+
+
+
+# Probit
+
+## {.tabset}
+
+### Model 1
+
+
+
+
+```{r}
+
+#remove zip code
+
+model1 <- glm(PersonalLoan ~ .,family = binomial("probit"), data= train[,-5])
+
+summary(model1)
+
+
+
+```
+
+### Model 2
+```{r}
+
+#remove zip code
+
+model2 <- glm(PersonalLoan ~ .,family = binomial("probit"), data= train[, -c(2,5)])
+
+summary(model2)
+
+```
+
+
+### Model 3
+
+```{r}
+#remove zip code, Age, Experience
+
+model3 <- glm(PersonalLoan ~ .,family = binomial("probit"), data= train[,-c(2,3,5,9)])
+
+summary(model3)
+
+```
+
+
+### ANOVA
+
+```{r}
+anova(model3, test="Chisq")
+```
+
+
+### Model Accuracy
+
+```{r}
+
+prediction <- predict.glm(model3, newdata = test[,-c(1,2,3,5,9)])
+
+prediction <- ifelse(prediction > 0.5, 1, 0)
+
+error <- mean(prediction != test$PersonalLoan)
+
+
+prediction2 <- predict.glm(model2, newdata = test[,-c(1,2,5)])
+
+prediction2 <- ifelse(prediction2 > 0.5, 1, 0)
+
+error2 <- mean(prediction2 != test$PersonalLoan)
+
+
+prediction1 <- predict.glm(model1, newdata = test[,-c(1,5)])
+
+prediction1 <- ifelse(prediction1 > 0.5, 1, 0)
+
+error1 <- mean(prediction1 != test$PersonalLoan)
+
+
+cat("Model 1 Accuracy : ", 1-error1, '\n\n')
+cat("Model 2 Accuracy : ", 1-error2, '\n\n')
+cat("Model 3 Accuracy : ", 1-error, '\n')
+ 
+```
+
+
+
+# Moderating Probit
+
+##{.tabset}
+
+### Probit Model 1
+
+```{r}
+
+l1_model <- glm(PersonalLoan ~ (Income + Family + CCAvg + Education + Mortgage + SecuritiesAccount + CDAccount + Online + CreditCard)^2 ,
+             data = train, family = binomial("probit"))
+
+summary(l1_model)
+
+```
+
+
+### Probit Model 2
+
+```{r}
+ 
+l2_model <- glm(PersonalLoan ~ Income + Family + CCAvg + Education + Mortgage + SecuritiesAccount  + Online + CreditCard + (Income * Family) +
+               (Income * CCAvg) + (Income + Education) + (Family + Education) + (Family * SecuritiesAccount) + (CCAvg * Education) +
+               (Online * CreditCard),
+             data = train, family = binomial("probit"))
+summary(l2_model)
+```
+
+
+### Probit Model 3
+
+```{r}
+
+ 
+l3_model <- glm(PersonalLoan ~ Income + Family + CCAvg + Education  + (Income * Family) +
+               (Income * CCAvg)  + (CCAvg * Education) ,
+             data = train, family = binomial("probit"))
+
+summary(l3_model)
+
+```
+
+
+
+### Moderating Accuracy
+
+```{r}
+#model 1
+
+prediction <- predict.glm(l1_model, newdata = test[,-c(1,5)])
+
+prediction <- ifelse(prediction > 0.5, 1, 0)
+
+error <- mean(prediction != test$PersonalLoan)
+
+
+# model 2
+
+prediction2 <- predict.glm(l2_model, newdata = test[,c("Income", "Family", "CCAvg", "Education", "Mortgage", "SecuritiesAccount","Online", "CreditCard" )])
+
+prediction2 <- ifelse(prediction2 > 0.5, 1, 0)
+
+error2 <- mean(prediction2 != test$PersonalLoan)
+
+
+prediction3 <- predict.glm(l3_model, newdata = test[,c("Income","Family", "CCAvg", "Education" )])
+
+prediction3 <- ifelse(prediction3 > 0.5, 1, 0)
+
+error3 <- mean(prediction1 != test$PersonalLoan)
+
+
+cat("Model 1 Accuracy : ", 1-error, '\n\n')
+cat("Model 2 Accuracy : ", 1-error2, '\n\n')
+cat("Model 3 Accuracy : ", 1-error3, '\n')
+
+```
+
+
+
+
+
+
+
+
+# Moderating Logit
+
+##{.tabset}
+
+### Logit Model 1
+
+```{r}
+
+l1_model <- glm(PersonalLoan ~ (Income + Family + CCAvg + Education + Mortgage + SecuritiesAccount + CDAccount + Online + CreditCard)^2 ,
+             data = train, family = binomial("logit"))
+
+summary(l1_model)
+
+```
+
+
+### Logit Model 2
+
+```{r}
+ 
+l2_model <- glm(PersonalLoan ~ Income + Family + CCAvg + Education + Mortgage + SecuritiesAccount  + Online + CreditCard + (Income * Family) +
+               (Income * CCAvg) + (Income + Education) + (Family + Education) + (Family * SecuritiesAccount) + (CCAvg * Education) +
+               (Online * CreditCard),
+             data = train, family = binomial("logit"))
+summary(l2_model)
+```
+
+
+### Logit Model 3
+
+```{r}
+
+ 
+l3_model <- glm(PersonalLoan ~ Income + Family + CCAvg + Education  + (Income * Family) +
+               (Income * CCAvg)  + (CCAvg * Education) ,
+             data = train, family = binomial("logit"))
+
+summary(l3_model)
+
+```
+
+
+
+### Moderating Accuracy
+
+```{r}
+#model 1
+
+prediction <- predict.glm(l1_model, newdata = test[,-c(1,5)])
+
+prediction <- ifelse(prediction > 0.5, 1, 0)
+
+error <- mean(prediction != test$PersonalLoan)
+
+
+# model 2
+
+prediction2 <- predict.glm(l2_model, newdata = test[,c("Income", "Family", "CCAvg", "Education", "Mortgage", "SecuritiesAccount","Online", "CreditCard" )])
+
+prediction2 <- ifelse(prediction2 > 0.5, 1, 0)
+
+error2 <- mean(prediction2 != test$PersonalLoan)
+
+
+prediction3 <- predict.glm(l3_model, newdata = test[,c("Income","Family", "CCAvg", "Education" )])
+
+prediction3 <- ifelse(prediction3 > 0.5, 1, 0)
+
+error3 <- mean(prediction3 != test$PersonalLoan)
+
+
+cat("Model 1 Accuracy : ", 1-error, '\n\n')
+cat("Model 2 Accuracy : ", 1-error2, '\n\n')
+cat("Model 3 Accuracy : ", 1-error3, '\n')
+
+```
+
+
+# Final Model
+##
+### Model
+
+```{r}
+
+model  <- glm(PersonalLoan ~ Income + Family + CCAvg + Education  + (Income * Family) +
+               (Income * CCAvg)  + (CCAvg * Education) ,
+             data = loandata, family = binomial("logit"))
+
+summary(model)
+
+
+
+```
+
+
+
+# Neural Network
+
+## {.tabset}
+
+### Mode 
+
+
+
+```{r}
+
+model1_nn <- neuralnet(PersonalLoan ~ Income + Family + CCAvg + Education  , hidden = 3,
+                        lifesign = "minimal",linear.output = FALSE,threshold = 0.1 , data = train )
+
+
+
+```
+
+
+
+### Neural Networks
+
+
+```{r}
+
+model1_nn$result.matrix
+
+plot(model1_nn)
+
+
+```
+
+
+
+### Accuracy
+
+```{r}
+
+test_result <- compute(model1_nn,test[,c("Income","Family", "CCAvg", "Education" )] )
+
+prediction <- test_result$net.result
+
+
+prediction3 <- ifelse(prediction > 0.5, 1, 0)
+
+error <- mean(prediction3 != test$PersonalLoan)
+
+cat("Accuracy : ", 1-error)
+
+
+```
+
+
+
+### Result Matrix
+
+```{r}
+model1_nn$result.matrix
+
+```
+
+
+# Analysis in Excell
+
+#### [Analysis in Excel](https://sumailsyr-my.sharepoint.com/:x:/g/personal/toabdula_syr_edu/Ed793jjWAg1NrkXHHfbzA90BewwooVhx_3kTZzHe3BU7lA?e=MqZmqz)
+
+
