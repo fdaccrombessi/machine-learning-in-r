@@ -1,0 +1,164 @@
+---
+title: "Machine Learning Crash Course"
+subtitle: 'Using R Programming'
+author: "Tajudeen Abdulazeez"
+date: "6/3/2023"
+output: 
+  ioslides_presentation:
+    logo: logo-2.png
+    widescreen: true
+    smaller: true
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+## Intro
+
+- Brief introduction about me!
+    - Educational background
+    - Experience
+
+
+<html>
+<body>
+
+<h2>Links</h2>
+<p><a href="https://www.toraaglobal.com" target="_blank">My Website</a></p>
+<p><a href="https://github.com/toraaglobal"   target="_blank">My GitHub</a></p>
+<p><a href="http://rpubs.com/toraaglobal" target="_blank">Rpubs</a></p>
+
+</body>
+</html>
+
+
+## [About Sparks of Africa]() 
+- Sparks of Africa is an independent non-profit organization incessantly working to improve and positively influence the socio-economic wellbeing of the Nigerian people. The organization is focused on socio economic uplift of the nation through efforts to engender empowering of the youth of Nigeria.
+
+- Nigeria has some of the largest young population in the world and to encourage and empower the youth to be productive in whatever career path they choose to follow will ensue a real change. Sparks of Africa also seeks to empower youth in the area of innovation, governance , the advancement of the economy and promotion of human and children's right. We are also deeply involved in advocacy for youth development and youth participation in government and in nation building.
+
+
+## Follow our pages 
+- [Facebook](https://www.facebook.com/sparksofafrica) 
+- [Linkedin](https://www.linkedin.com/company/sparks-of-africa/) 
+- [Join our discord channel for Q/A](https://discord.gg/tJtHDA9w)
+- [Visit our website for more information](https://sparksofafrica.org/)
+
+### [Project and Case Studies]()
+
+
+## Course Outline {.flexbox .vcenter}
+
+##  Day 1
+- Day 1: (June 3, 2023. (8am - 11am Pacific Time / 4pm - 7pm West Africa Standard Time)
+  - Setting up development environment
+  - Introduction to R programming
+  - Understanding the fundamentals of machine learning and its importance in today's world.
+  - Data Preprocessing
+  - Real-world applications: Case study
+  
+##  Day 2
+- Day 2: (June 10, 2023. (8am - 11am Pacific Time / 4pm - 7pm West Africa Standard Time)
+  - Supervised Learning Algorithms
+    - Regression
+    - Classification
+  - Unsupervised Learning Algorithms
+    - Clustering
+  - Model Evaluation
+  - Real-world applications: Case study
+  
+## Day 3
+- Day 3: (June 17, 2023. (8am - 11am Pacific Time / 4pm - 7pm West Africa Standard Time)
+  - Advanced Topics in Machine Learning in R
+    - Association Rule Mining
+    - Support Vector Machines (SVMs): Understanding SVMs and building models in R
+    - Network Graph
+  - Applications of Machine Learning in R
+    - Time Series Analysis: Understanding time series analysis and building models in R.
+    - Text Analytics: Understanding text analytics and building models in R
+    - Recommender Systems: Understanding recommender systems and building models in R.
+
+## Day 4
+- Day 4: June 24, 2023. (8am - 11am Pacific Time / 4pm - 7pm West Africa Standard Time)
+  - Building an end-to-end machine learning pipeline: From data preprocessing to model evaluation and selection.
+  - Best practices for machine learning in R.
+  - Future directions and advanced topics in machine learning in R.
+
+
+
+## Day 1 
+
+- [Create a Github account]() 
+- [Fork the course material repo]()
+- Installing R Studio
+  - [MAC]()
+  - [PC]()
+  - [Windows 10]()
+
+- Resources
+  - [HOW TO Install Packages on to R]()
+  - [HOW TO Set a “Working Directory” in R]()
+  - [HOW TO “Get Data into R” (Part 1)]()
+  - [HOW TO “Get Data into R” (Excel)]()
+  - [HOW TO “Get Data into R” (Part 2)]()
+
+
+## Day 1 
+### [Introduction to R programming](../introduction2R/Introduction2R.Rmd) 
+
+
+
+### [Introduction to Macine Learning]()
+The most common type of machine learning is to learn the mapping Y = f(X) to make predictions of Y for new X. This is called predictive modeling or predictive analytics and our goal is to make the most accurate predictions possible.
+
+
+
+### [Data Preprocessing]()
+
+
+### [Case study: Story telling with data]() 
+
+
+
+
+## Day 2
+
+- Supervised Learning Algorithms
+  - Regression
+  - Classification
+- Unsupervised Learning Algorithms
+  - Clustering
+- Model Evaluation
+- Real-world applications: Case study
+
+
+## Day 3 
+
+- Advanced Topics in Machine Learning in R
+  - Association Rule Mining
+  - Support Vector Machines (SVMs): Understanding SVMs and building models in R
+  - Network Graph
+- Applications of Machine Learning in R
+  - Time Series Analysis: Understanding time series analysis and building models in R.
+  - Text Analytics: Understanding text analytics and building models in R
+  - Recommender Systems: Understanding recommender systems and building models in R.
+  
+  
+
+## Day 4 
+- Building an end-to-end machine learning pipeline: From data preprocessing to model evaluation and selection.
+- Best practices for machine learning in R.
+- Future directions and advanced topics in machine learning in R.
+
+
+
+
+
+
+
+
+

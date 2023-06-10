@@ -1,0 +1,48 @@
+[Opening scene: Bright and engaging visuals of data analysis and machine learning]
+
+Narrator: Are you ready to unlock the power of machine learning using R? Join us for an exciting and comprehensive crash course in Machine Learning using R, sponsored by Sparks of Africa. This course is designed to equip you with the essential skills and knowledge needed to thrive in this rapidly growing field.
+
+[Scene transitions to a professional classroom setting with diverse participants]
+
+Narrator: From June 3rd to June 24th, 2023, you'll embark on a transformative learning journey. Led by our expert instructor, Tajudeen Abdulazeez, Senior Data Scientist Engineer at Bayer, you'll gain practical insights and hands-on experience in the world of machine learning.
+
+[Scene transitions to a highlight reel showcasing the course content]
+
+Narrator: Let's take a sneak peek at what you'll learn during this engaging crash course.
+
+[Day 1]
+
+[Scene: Participants engaging in interactive activities]
+
+Narrator: On June 3rd, from 8 am to 11 am Pacific Time, or 4 pm to 7 pm West Africa Standard Time, we kickstart our course with a focus on the fundamentals. You'll learn how to set up your development environment, get introduced to R programming, and understand the importance of machine learning in today's world. We'll dive into data preprocessing and explore real-world applications through a captivating case study.
+
+[Day 2]
+
+[Scene: Participants collaborating on a group project]
+
+Narrator: Fast forward to June 10th, and we delve deeper into the world of machine learning. From 8 am to 11 am Pacific Time, or 4 pm to 7 pm West Africa Standard Time, you'll explore supervised learning algorithms, including regression and classification. Unsupervised learning algorithms such as clustering will also be covered. We'll then shift our focus to model evaluation and present real-world applications through another intriguing case study.
+
+[Day 3]
+
+[Scene: Participants actively working on advanced machine learning techniques]
+
+Narrator: Mark your calendars for June 17th. From 8 am to 11 am Pacific Time, or 4 pm to 7 pm West Africa Standard Time, we delve into advanced topics in machine learning using R. You'll explore association rule mining, dive into Support Vector Machines (SVMs), and learn how to build models in R. We'll also explore network graph analysis. Additionally, you'll discover the practical applications of machine learning in R, including time series analysis, text analytics, and recommender systems.
+
+[Day 4]
+
+[Scene: Participants presenting their end-to-end machine learning pipelines]
+
+Narrator: Finally, on June 24th, from 8 am to 11 am Pacific Time, or 4 pm to 7 pm West Africa Standard Time, we conclude the course by guiding you through building an end-to-end machine learning pipeline. You'll learn best practices for machine learning in R and gain insights into future directions and advanced topics in this exciting field.
+
+[Closing scene: Excited participants registering for the course]
+
+Narrator: Don't miss this incredible opportunity to expand your knowledge and gain practical skills in machine learning using R. Register now for our crash course from June 3rd to June 24th, 2023! Join us in this captivating learning experience sponsored by Sparks of Africa as part of our skills development programs.
+
+[Text displays on screen: Register now!]
+
+[Background music fades out]
+
+
+
+
+
